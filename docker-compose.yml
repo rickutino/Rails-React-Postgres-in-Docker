@@ -2,8 +2,13 @@ version: '3'
 services:
   app.postgres.db:
     image: postgres
-    volume:
+    restart: always
+    environment: 
+      POSTGRES_PASSWORD: mypassword
+    volumes:
       - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - 5432
   app.web:
     build: .
     command: bash start.sh
@@ -14,3 +19,6 @@ services:
       - "3000:3000"
     depends_on: 
       - app.postgres.db
+volumes:
+  postgres:
+  gems:
