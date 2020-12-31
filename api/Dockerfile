@@ -8,5 +8,5 @@ WORKDIR /ToDo
 COPY Gemfile /ToDo/Gemfile
 COPY Gemfile.lock /ToDo/Gemfile.lock
 
-RUN bundle install --
+RUN bundle install
 COPY . /ToDo

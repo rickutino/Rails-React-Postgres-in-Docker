@@ -9,7 +9,7 @@ services:
       - postgres:/var/lib/postgresql/data
 
   app.web:
-    build: .
+    build: ./api
     command: bash start.sh
     ports:
       - "3001:3000"
@@ -20,6 +20,16 @@ services:
       - gems:/gems
     depends_on:
       - app.postgres.db
+
+  app.front:
+    build: ./web
+    command: yarn start
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./web:/web
+    depends_on:
+      - app.web
 
 volumes:
   postgres:
